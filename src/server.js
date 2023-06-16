@@ -1,6 +1,6 @@
-require('.env').config();
+require('dotenv').config();
 const app = require('./app');
-const { db } = require('./src/database/config');
+const { db } = require('./database/config');
 
 db.authenticate()
   .then(() => console.log('database authenticated'))

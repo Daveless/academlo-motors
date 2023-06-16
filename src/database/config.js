@@ -1,4 +1,4 @@
-require('.env').config();
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_DIALECT = process.env.DB_DIALECT;

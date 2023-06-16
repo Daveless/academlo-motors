@@ -50,12 +50,12 @@ exports.findRepairById = async (req, res) => {
 
 exports.createRepair = async (req, res) => {
   try {
-    const { id, date, status, userId } = req.body;
+    const { id } = req.params;
+    const { date } = req.body;
 
     const repair = await Repairs.create({
-      id,
       date,
-      userId,
+      userId: id,
     });
 
     return res.status(200).json({
