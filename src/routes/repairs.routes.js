@@ -8,6 +8,7 @@ const authMiddleware = require('../middlewares/auth.middleware');
 const router = express.Router();
 
 router.use(authMiddleware.protect);
+
 router.use(authMiddleware.renew);
 
 router

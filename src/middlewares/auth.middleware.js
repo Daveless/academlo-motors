@@ -67,7 +67,18 @@ exports.restictTo = (...roles) => {
         new AppError('You do not have permission to perform this action', 403)
       );
     }
-    console.log(req.sessionUser.role);
     next();
   };
 };
+
+exports.protectAccountOwner = catchAsync(async (req, res, next) => {
+  const { user, sessionUser } = req;
+
+  console.log(user.id, sessionUser.id);
+
+  if (user.id !== sessionUser.id) {
+    return next(new AppError('Yo do not own this account', 401));
+  }
+
+  next();
+});

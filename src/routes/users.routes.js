@@ -23,7 +23,15 @@ router.route('/').get(userController.findUsers);
 router
   .route('/:id')
   .get(userMiddleware.validUser, userController.findUserById)
-  .patch(userMiddleware.validUser, userController.updateUser)
-  .delete(userMiddleware.validUser, userController.deleteUser);
+  .patch(
+    userMiddleware.validUser,
+    authMiddleware.protectAccountOwner,
+    userController.updateUser
+  )
+  .delete(
+    userMiddleware.validUser,
+    authMiddleware.protectAccountOwner,
+    userController.deleteUser
+  );
 
 module.exports = router;
